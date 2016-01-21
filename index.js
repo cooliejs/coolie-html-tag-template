@@ -1,5 +1,5 @@
 /**
- * 文件描述
+ * html <template> content replacement
  * @author ydr.me
  * @create 2016-01-21 15:22
  */
@@ -10,13 +10,19 @@
 
 
 var dato = require('ydr-utils').dato;
+var dato = require('ydr-utils').dato;
 
 var pkg = require('./package.json');
 
 var defaults = {
-    tagName: 'script',
+    conditions: [{
+        tagName: 'template'
+    }, {
+        tagName: 'script',
+        type: /template/
+    }],
     progress: 'post-html',
-    regList: [{
+    replacements: [{
         reg: /\s{2,}/g,
         replace: ' '
     }, {
@@ -28,6 +34,14 @@ var defaults = {
 module.exports = function (configs) {
     configs = dato.extend({}, defaults, configs);
 
+    var replace = function (content) {
+        dato.each(configs.replacements, function (index, replacement) {
+            content = content.replace(replacement.reg, replacement.replace);
+        });
+
+        return content;
+    };
+
     var coolieHTMLTagTemplate = function (options) {
         if (options.progress !== configs.progress) {
             return options;
@@ -35,17 +49,16 @@ module.exports = function (configs) {
 
         var coolie = this;
 
-        options.code = coolie.matchHTML(options.code, {
-            tag: configs.tagName
-        }, function (node) {
-            if (!node.attrs || !node.attrs[configs.attributeName]) {
-                return node;
-            }
+        dato.each(options.conditions, function (index, condition) {
+            options.code = coolie.matchHTML(options.code, {
+                tag: condition.tagName
+            }, function (node) {
+                if(!condition.type){
+                    condition.type = /.*/;
+                }
 
-            var url = node.attrs[configs.attributeName];
-            var ret = coolie.buildResPath(url, options.file);
-            node.attrs[configs.attributeName] = ret.url;
-            return node;
+                switch ()
+            });
         });
 
         return options;
