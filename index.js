@@ -48,7 +48,7 @@ module.exports = function (configs) {
 
         var coolie = this;
 
-        dato.each(options.conditions, function (index, condition) {
+        dato.each(configs.conditions, function (index, condition) {
             options.code = coolie.matchHTML(options.code, {
                 tag: condition.tagName
             }, function (node) {
@@ -84,7 +84,8 @@ module.exports = function (configs) {
                     return node;
                 }
 
-                node.content = replace(node.content);
+                node.content[0] = node.content[0] || '';
+                node.content[0] = replace(node.content[0]);
                 return node;
             });
         });
