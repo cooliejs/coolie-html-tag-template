@@ -1,0 +1,41 @@
+{
+  "name": "coolie-html-tag-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "html <template> content replacement",
+  "scripts": {},
+  "preferGlobal": false,
+  "bin": {},
+  "engines": {
+    "node": ">= 4",
+    "iojs": ">= 1.0.0"
+  },
+  "main": "index.js",
+  "keywords": [
+    "cooliejs",
+    "coolie",
+    "template",
+    "cloudcome",
+    "ydr.me"
+  ],
+  "author": {
+    "name": "cloudcome",
+    "email": "cloudcome@163.com",
+    "url": "http://ydr.me"
+  },
+  "contributors": [],
+  "homepage": "https://github.com/cooliejs/coolie-html-tag-template",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cooliejs/coolie-html-tag-template"
+  },
+  "bugs": {
+    "url": "https://github.com/cooliejs/coolie-html-tag-template/issues"
+  },
+  "dependencies": {
+    "ydr-utils": "^41.2.7"
+  },
+  "peerDependencies": {},
+  "devDependencies": {},
+  "license": "MIT"
+}
