@@ -8,9 +8,8 @@
 'use strict';
 
 
-
 var dato = require('ydr-utils').dato;
-var dato = require('ydr-utils').dato;
+var typeis = require('ydr-utils').typeis;
 
 var pkg = require('./package.json');
 
@@ -53,11 +52,40 @@ module.exports = function (configs) {
             options.code = coolie.matchHTML(options.code, {
                 tag: condition.tagName
             }, function (node) {
-                if(!condition.type){
+                if (!condition.type) {
                     condition.type = /.*/;
                 }
 
-                switch ()
+                node.attrs = node.attrs || {};
+                var matched = !!node.attrs.type;
+
+                if (!matched) {
+                    return node;
+                }
+
+                switch (typeis(condition.type)) {
+                    case 'string':
+                        matched = node.attrs.type === condition.type;
+                        break;
+
+                    case 'regexp':
+                        matched = condition.type.test(node.attrs.type);
+                        break;
+
+                    case 'function':
+                        matched = condition.type(node);
+                        break;
+
+                    default:
+                        matched = false;
+                }
+
+                if (!matched) {
+                    return node;
+                }
+
+                node.content = replace(node.content);
+                return node;
             });
         });
 
