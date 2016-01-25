@@ -84,8 +84,8 @@ module.exports = function (configs) {
                     return node;
                 }
 
-                node.content[0] = node.content[0] || '';
-                node.content[0] = replace(node.content[0]);
+                node.content = node.content || '';
+                node.content = replace(node.content);
                 return node;
             });
         });
