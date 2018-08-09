@@ -2,14 +2,16 @@
  * html <template> content replacement
  * @author ydr.me
  * @create 2016-01-21 15:22
+ * @uodate 2018年08月07日14:14:05
  */
 
 
 'use strict';
 
 
-var dato = require('ydr-utils').dato;
-var typeis = require('ydr-utils').typeis;
+var array = require('blear.utils.array');
+var object = require('blear.utils.object');
+var typeis = require('blear.utils.typeis');
 
 var pkg = require('./package.json');
 
@@ -31,24 +33,24 @@ var defaults = {
 };
 
 module.exports = function (configs) {
-    configs = dato.extend({}, defaults, configs);
+    configs = object.assign({}, defaults, configs);
 
     var replace = function (content) {
-        dato.each(configs.replacements, function (index, replacement) {
+        array.each(configs.replacements, function (index, replacement) {
             content = content.replace(replacement.reg, replacement.replace);
         });
 
         return content;
     };
 
-    var coolieHTMLTagTemplate = function (options) {
+    return function (options) {
         if (options.progress !== configs.progress) {
             return options;
         }
 
         var coolie = this;
 
-        dato.each(configs.conditions, function (index, condition) {
+        array.each(configs.conditions, function (index, condition) {
             options.code = coolie.matchHTML(options.code, {
                 tag: condition.tagName
             }, function (node) {
@@ -92,11 +94,8 @@ module.exports = function (configs) {
 
         return options;
     };
-
-    coolieHTMLTagTemplate.package = pkg;
-
-    return coolieHTMLTagTemplate;
 };
 
+module.exports.package = pkg;
 module.exports.defaults = defaults;
 

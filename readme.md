@@ -1,2 +1,2 @@
-visit <https://coolie.ydr.me/middleware/coolie-html-tag-template/>
+visit <https://coolie.ydr.me/middleware/coolie-mid-tag-template/>
 

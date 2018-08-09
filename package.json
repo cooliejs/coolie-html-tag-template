@@ -1,8 +1,8 @@
 {
-  "name": "coolie-html-tag-template",
-  "version": "1.0.0",
+  "name": "coolie-mid-tag-template",
+  "version": "1.1.0",
   "private": false,
-  "description": "html <template> content replacement",
+  "description": "coolie 中间件：压缩<template/>或<script type=\"template\">",
   "scripts": {},
   "preferGlobal": false,
   "bin": {},
@@ -24,16 +24,18 @@
     "url": "http://ydr.me"
   },
   "contributors": [],
-  "homepage": "https://github.com/cooliejs/coolie-html-tag-template",
+  "homepage": "https://coolie.ydr.me/middleware/coolie-mid-tag-template",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cooliejs/coolie-html-tag-template"
+    "url": "https://github.com/cooliejs/coolie-mid-tag-template"
   },
   "bugs": {
-    "url": "https://github.com/cooliejs/coolie-html-tag-template/issues"
+    "url": "https://github.com/cooliejs/coolie-mid-tag-template/issues"
   },
   "dependencies": {
-    "ydr-utils": "^41.2.7"
+    "blear.utils.array": "^1.0.12",
+    "blear.utils.object": "^1.0.14",
+    "blear.utils.typeis": "^1.0.3"
   },
   "peerDependencies": {},
   "devDependencies": {},
